@@ -1,13 +1,19 @@
+import { hashPassword } from "../utils/auth.util.js";
+import prisma from "../prisma/client.js";
 
-
-export const createUser = (username,email,password)=>{
-    const hashedPassword= hashPassword(password);
-    const newUser = prisma.user.create({
+export const createUser = async (username,email,password)=>{
+    
+    const newUser = await prisma.user.create({
         data:{
             username,
             email,
-            password: hashedPassword
+            password
         }
     });
-    console.log(newUser);
+
+    return newUser;
 }
+export const findUserByUsername = async (username) => {
+  return prisma.user.findUnique({ where: { username } })
+}
+
