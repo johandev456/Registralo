@@ -1,0 +1,50 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id          String     @id @default(uuid()) @db.Uuid
+  email       String     @unique
+  username    String     @unique
+  password    String
+  assignments Assignee[]
+}
+
+// model department{
+//     id String @id @default(auto()) @map("_id") @db.ObjectId 
+//     name String
+//     description String
+// }
+
+model Automation {
+  id          String     @id @default(uuid()) @db.Uuid
+  name        String
+  description String?
+  state       State      @default(Activo)
+  start       DateTime
+  comments    String?
+  createdAt   DateTime   @default(now())
+  assignments   Assignee[]
+}
+
+enum State {
+  Activo
+  Inactivo
+  Mantenimiento
+}
+
+model Assignee {
+  id            String     @id @default(uuid()) @db.Uuid
+  automation    Automation @relation(fields: [automation_id], references: [id])
+  automation_id String     @db.Uuid
+
+  user    User   @relation(fields: [user_id], references: [id])
+  user_id String @db.Uuid
+
+  @@unique([automation_id, user_id])
+}
