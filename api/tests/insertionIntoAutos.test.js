@@ -25,8 +25,9 @@ test("inserta una automatizacion en la base de datos", async () => {
     assert.equal(savedAuto.description,request.body.description);
     assert.deepEqual(savedAuto.start,new Date(request.body.start));
     assert.equal(savedAuto.comments,request.body.comments);
+    
   } finally {
-    // await prisma.automation.deleteMany({ where: { name:request.body.name } });
-    // await prisma.$disconnect();
+    await prisma.automation.deleteMany({ where: { name:request.body.name } });
+    await prisma.$disconnect();
   }
 });
