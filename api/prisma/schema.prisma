@@ -3,9 +3,9 @@ generator client {
 }
 
 datasource db {
-  provider = "postgresql"
-  url      = env("DATABASE_URL")
-  directUrl=env("DIRECT_URL")
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
 }
 
 model User {
@@ -27,10 +27,10 @@ model Automation {
   name        String
   description String?
   state       State      @default(Activo)
-  start       DateTime
+  start       DateTime   @db.Date
   comments    String?
   createdAt   DateTime   @default(now())
-  assignments   Assignee[]
+  assignments Assignee[]
 }
 
 enum State {
