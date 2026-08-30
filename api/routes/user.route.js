@@ -10,4 +10,5 @@ router.get("/:id",verifyToken,getUser)
 
 
 
+
 export default router;
