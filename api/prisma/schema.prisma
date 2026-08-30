@@ -41,10 +41,10 @@ enum State {
 
 model Assignee {
   id            String     @id @default(uuid()) @db.Uuid
-  automation    Automation @relation(fields: [automation_id], references: [id])
+  automation    Automation @relation(fields: [automation_id], references: [id], onDelete: Cascade)
   automation_id String     @db.Uuid
 
-  user    User   @relation(fields: [user_id], references: [id])
+  user    User   @relation(fields: [user_id], references: [id], onDelete: Cascade)
   user_id String @db.Uuid
 
   @@unique([automation_id, user_id])

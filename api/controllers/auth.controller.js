@@ -24,7 +24,7 @@ export const login = async (req,res)=>{
         secure: process.env.NODE_ENV === "production",
         sameSite: "lax",
         maxAge: expires
-    }).status(200).json(userDataAndToken.userData)
+    }).status(200).json({message:"Sesion iniciada!"})
 
     }catch(error){
         console.log("Error durante login:", error);
