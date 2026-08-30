@@ -52,6 +52,23 @@ export const verifyAssignment=async(automationId)=>{
     }
 }
 
+export const verifyUnassignment=async(automationId)=>{
+    const assignmentExistance= await prisma.assignee.findMany({
+    where: {
+      automation_id:automationId
+    },
+    include: {
+      user: true
+    }
+  })
+  
+  if(assignmentExistance.length === 0){
+        return true;
+    }else{
+        return false;
+    }
+}
+
 export const assignUsersOnDB=async(users,automationId)=>{
     
     
@@ -67,8 +84,25 @@ export const assignUsersOnDB=async(users,automationId)=>{
       console.log("Error en assign: "+error)
     }
     
-    
-    
-  
+}
 
+export const unassignUsersOnDB=async(users,automationId)=>{
+    
+ 
+    try{
+      const userIds = users.map((user) => user.id);
+
+      await prisma.assignee.deleteMany({
+        where: {
+          automation_id: automationId,
+          user_id: {
+            in: userIds
+          }
+        }
+      });
+  
+    }catch(error){
+      console.log("Error en unassign: "+error)
+    }
+    
 }
