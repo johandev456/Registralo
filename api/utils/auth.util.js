@@ -22,3 +22,4 @@ export const comparePassword=async(userPassword,digitedPassword)=>{
     const passwordValidation = bcrypt.compare(digitedPassword,userPassword);
     return passwordValidation;
 }
+

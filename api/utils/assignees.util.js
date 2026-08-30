@@ -17,3 +17,7 @@ export const getUsernamesFromJSON=(usersFromRequest)=>{
     : Object.values(usersFromRequest);
     return usernames;
 }
+
+export const getIdsFromArray=(usersArray)=>{
+    return usersArray.map((user) => user.id);
+}

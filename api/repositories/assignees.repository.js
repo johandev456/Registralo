@@ -1,5 +1,5 @@
 import prisma from "../prisma/client.js"
-import { getUsernamesFromJSON, verifyUsersData } from "../utils/assignees.util.js";
+import { getIdsFromArray, getUsernamesFromJSON, verifyUsersData } from "../utils/assignees.util.js";
 
 export const verifyAutomation=async(automationId)=>{
     const automation=await prisma.automation.findUnique({where:{id:automationId}})
@@ -52,17 +52,18 @@ export const verifyAssignment=async(automationId)=>{
     }
 }
 
-export const verifyUnassignment=async(automationId)=>{
-    const assignmentExistance= await prisma.assignee.findMany({
+export const verifyUnassignment=async(users,automationId)=>{
+    const userIds = getIdsFromArray(users);
+  const assignmentNonExistance= await prisma.assignee.findMany({
     where: {
-      automation_id:automationId
-    },
-    include: {
-      user: true
+      automation_id:automationId,
+      user_id:{
+        in: userIds
+      }
     }
   })
   
-  if(assignmentExistance.length === 0){
+  if(assignmentNonExistance.length === 0){
         return true;
     }else{
         return false;
@@ -90,7 +91,7 @@ export const unassignUsersOnDB=async(users,automationId)=>{
     
  
     try{
-      const userIds = users.map((user) => user.id);
+      const userIds = getIdsFromArray(users);
 
       await prisma.assignee.deleteMany({
         where: {

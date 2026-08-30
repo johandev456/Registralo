@@ -16,14 +16,16 @@ export const assignUsersServices=async(users,automationId)=>{
 
 export const unassignUsersServices=async(users,automationId)=>{
     const automationExistance=await verifyAutomation(automationId);
-    
+
+    if(!automationExistance) throw new Error("Automatizacion no encontrada!")
+
     const usersData= await findUsersByUsername(users);
     
     const operation= await unassignUsersOnDB(usersData,automationId);
-    
-    const verificationOfUnassignment= await verifyUnassignment(automationId);
-    
-    if(!verificationOfUnassignment || !automationExistance){
+    console.log("3")
+    const verificationOfUnassignment= await verifyUnassignment(usersData,automationId);
+    console.log("4")
+    if(!verificationOfUnassignment){
         throw new Error("No se pudo desasignar usuario!")
     }
 }
