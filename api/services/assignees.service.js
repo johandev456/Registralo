@@ -22,9 +22,9 @@ export const unassignUsersServices=async(users,automationId)=>{
     const usersData= await findUsersByUsername(users);
     
     const operation= await unassignUsersOnDB(usersData,automationId);
-    console.log("3")
+    
     const verificationOfUnassignment= await verifyUnassignment(usersData,automationId);
-    console.log("4")
+    
     if(!verificationOfUnassignment){
         throw new Error("No se pudo desasignar usuario!")
     }
