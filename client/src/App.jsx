@@ -21,7 +21,7 @@ function App(){
     <BrowserRouter>
       <Routes>
         
-        <Route path="/login" element={<><Navbar /> <Login /></>} />
+        <Route path="/login" element={ <Login />} />
         <Route element={<><Navbar /> <ProtectedRoute /></>}>
           <Route path="/" element={<Dashboard />} />
           <Route path="/automations/new" element={<AutomationForm />} />
