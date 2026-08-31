@@ -35,7 +35,7 @@ export const getAssigneesServices = async(automationId)=>{
 
     if(!automationExistance) throw new Error("Automatizacion no encontrada!")
     const operation= await getAssigneesFromDB(automationId);
-    if(operation===0) {
+    if(operation.length===0) {
         return false
     }else{
         return operation;
