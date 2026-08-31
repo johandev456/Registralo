@@ -1,7 +1,7 @@
 import { registerNewUser,loginUser } from "../services/auth.service.js"
 
 //Comprobar si tiene sesion activa
-export const me =async (req,res)=>{
+export const verifyActiveSession =async (req,res)=>{
     res.json(req.username)
 }
 

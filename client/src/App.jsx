@@ -4,8 +4,17 @@ import Dashboard from "./pages/Dashboard";
 import AutomationForm from "./pages/AutomationForm";
 import AutomationDetail from "./pages/AutomationDetail";
 import ProtectedRoute from "./components/ProtectedRoute";
+import { verifyActiveSession } from './services/auth.service';
+import { useAuthStore } from './store/authStore';
+import { useEffect } from 'react';
 
 function App(){
+  const setUser = useAuthStore((state)=>state.setUser)
+  useEffect(() => {
+    verifyActiveSession()
+      .then((username) => setUser({ username }))
+      .catch(() => {}) // si no hay cookie, queda null y ProtectedRoute redirige
+  }, [])
   return(
     <BrowserRouter>
       <Routes>
