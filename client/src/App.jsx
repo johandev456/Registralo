@@ -8,15 +8,19 @@ import { verifyActiveSession } from "./services/auth.service";
 import { useAuthStore } from "./store/authStore";
 import { useEffect } from "react";
 import Navbar from "./components/Navbar";
+import { useState } from "react";
 
 
 function App(){
   const setUser = useAuthStore((state)=>state.setUser)
+  const [checking, setChecking]=useState(true)
   useEffect(() => {
     verifyActiveSession()
       .then((username) => setUser({ username }))
-      .catch(() => {}) // si no hay cookie, queda null y ProtectedRoute redirige
+      .catch(() => {})// si no hay cookie, queda null y ProtectedRoute redirige
+      .finally(()=> setChecking(false)) 
   }, [])
+  if(checking) return null //Espera antes de renderizar rutas
   return(
     <BrowserRouter>
       <Routes>
