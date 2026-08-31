@@ -1,12 +1,12 @@
-import {BrowserRouter as Router, Routes, Route} from 'react-router-dom';
+import {BrowserRouter as Router, Routes, Route} from "react-router-dom";
 import Login from "./pages/Login";
 import Dashboard from "./pages/Dashboard";
 import AutomationForm from "./pages/AutomationForm";
 import AutomationDetail from "./pages/AutomationDetail";
 import ProtectedRoute from "./components/ProtectedRoute";
-import { verifyActiveSession } from './services/auth.service';
-import { useAuthStore } from './store/authStore';
-import { useEffect } from 'react';
+import { verifyActiveSession } from "./services/auth.service";
+import { useAuthStore } from "./store/authStore";
+import { useEffect } from "react";
 
 function App(){
   const setUser = useAuthStore((state)=>state.setUser)
