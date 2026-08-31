@@ -23,6 +23,7 @@ function App(){
           <Route path="/" element={<Dashboard />} />
           <Route path="/automations/new" element={<AutomationForm />} />
           <Route path="/automations/:id" element={<AutomationDetail />} />
+          <Route path="/automations/:id/edit" element={<AutomationForm />} />
         </Route>
       </Routes>
     </BrowserRouter>
