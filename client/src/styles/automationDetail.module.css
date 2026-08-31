@@ -70,6 +70,20 @@
   background-color: #1d4ed8;
 }
 
+.assign {
+  background-color: #1c7224;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+}
+
+.edit:hover {
+  background-color: #0f4714;
+}
+
+
 .delete {
   background-color: #ef4444;
   color: white;

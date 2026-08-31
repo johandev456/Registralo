@@ -2,6 +2,7 @@ import {Routes, Route, BrowserRouter} from "react-router-dom";
 import Login from "./pages/Login";
 import Dashboard from "./pages/Dashboard";
 import AutomationForm from "./pages/AutomationForm";
+import AssignForm from "./pages/AssignForm";
 import AutomationDetail from "./pages/AutomationDetail";
 import ProtectedRoute from "./components/ProtectedRoute";
 import { verifyActiveSession } from "./services/auth.service";
@@ -31,6 +32,7 @@ function App(){
           <Route path="/automations/new" element={<AutomationForm />} />
           <Route path="/automations/:id" element={<AutomationDetail />} />
           <Route path="/automations/:id/edit" element={<AutomationForm />} />
+          <Route path="/automations/:id/assign" element={<AssignForm />} />
         </Route>
       </Routes>
     </BrowserRouter>
