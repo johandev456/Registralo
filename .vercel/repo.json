@@ -1,0 +1,11 @@
+{
+  "remoteName": "origin",
+  "projects": [
+    {
+      "id": "prj_QVhjPQchEhhHVLM3e78yYsT366kH",
+      "name": "registralo",
+      "directory": "client",
+      "orgId": "team_vphxLE8FNA72rrjWwklH8riU"
+    }
+  ]
+}

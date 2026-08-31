@@ -15,10 +15,10 @@ export const assignUsers = async (automationId, users) => {
 }
 export const unassignUsers = async (automationId,users)=>{
     const usersObject = userFormatting(users)
-
-    await api.delete(`/api/assignees/`,{
-        automation: automationId,
-        users: usersObject
+    await api.delete(`/api/assignees/`, {
+        data: {
+            automation: automationId,
+            users: usersObject
+        }
     })
-    
 }

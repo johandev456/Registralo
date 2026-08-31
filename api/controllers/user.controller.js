@@ -16,10 +16,14 @@ export const getUser=async(req,res)=>{
 export const getAllUsers= async(req,res)=>{
     try{
         const users= await getAllUsersService();
-
-        res.status(200).json(users);
+        const usersInSafeFormat = users.map(user => ({
+            user_id: user.id,
+            username: user.username,
+            email: user.email
+        }));
+        res.status(200).json(usersInSafeFormat);
     }catch(error){
         console.log(error)
-        es.status(500).json({message:"Operacion fallida al obtener usuarios!"})
+        res.status(500).json({message:"Operacion fallida al obtener usuarios!"})
     }
 }

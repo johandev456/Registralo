@@ -16,12 +16,13 @@ export const assignUsers= async (req,res)=>{
 
 export const unassignUsers = async (req,res)=>{
     try{
+        console.log("llego? +"+req.body)
         const {users,automation} =req.body;
         await unassignUsersServices(users,automation);
 
-        res.status(200).json({message: "Usuarios desasignados exitosamente"})
+        res.status(204).json()
     }catch(error){
-        res.status(500).json({message:"Error al desasignar usuarios"})
+        res.status(500).json({message:"Error al desasignar usuarios "+error})
     }
 
 }
