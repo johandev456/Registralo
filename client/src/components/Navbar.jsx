@@ -1,7 +1,7 @@
-import { useNavigate } from 'react-router-dom'
-import { logout } from '../services/auth.service'
-import { useAuthStore } from '../store/authStore'
-import styles from '../styles/navbar.module.css'
+import { useNavigate } from "react-router-dom"
+import { logout } from "../services/auth.service"
+import { useAuthStore } from "../store/authStore"
+import styles from "../styles/navbar.module.css"
 
 const Navbar = () => {
   const user = useAuthStore((state) => state.user)
@@ -11,12 +11,12 @@ const Navbar = () => {
   const handleLogout = async () => {
     await logout()
     clearUser()
-    navigate('/login')
+    navigate("/login")
   }
 
   return (
     <nav className={styles.navbar}>
-      <span className={styles.brand} onClick={() => navigate('/')}>
+      <span className={styles.brand} onClick={() => navigate("/")}>
         Registralo
       </span>
       <div className={styles.right}>

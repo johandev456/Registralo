@@ -7,6 +7,7 @@ import ProtectedRoute from "./components/ProtectedRoute";
 import { verifyActiveSession } from "./services/auth.service";
 import { useAuthStore } from "./store/authStore";
 import { useEffect } from "react";
+import Navbar from "./components/Navbar";
 
 function App(){
   const setUser = useAuthStore((state)=>state.setUser)
@@ -18,8 +19,9 @@ function App(){
   return(
     <BrowserRouter>
       <Routes>
-        <Route path="/login" element={<Login />} />
-        <Route element={<ProtectedRoute />}>
+        
+        <Route path="/login" element={<><Navbar /> <Login /></>} />
+        <Route element={<><Navbar /> <ProtectedRoute /></>}>
           <Route path="/" element={<Dashboard />} />
           <Route path="/automations/new" element={<AutomationForm />} />
           <Route path="/automations/:id" element={<AutomationDetail />} />
