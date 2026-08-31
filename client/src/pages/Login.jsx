@@ -2,7 +2,7 @@ import { useState } from "react"
 import { useNavigate } from "react-router-dom"
 import { login, verifyActiveSession } from "../services/auth.service"
 import { useAuthStore } from "../store/authStore"
-import "../styles/Login.css"
+import styles from "../styles/Login.css"
 
 const Login = () => {
   const [form, setForm] = useState({ username: "", password: "" })
