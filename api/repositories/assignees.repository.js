@@ -107,3 +107,11 @@ export const unassignUsersOnDB=async(users,automationId)=>{
     }
     
 }
+
+
+export const getAssigneesFromDB=async(automationId)=>{
+    
+    
+   const assignees= await prisma.assignee.findMany({where:{automation_id:automationId}})
+   return assignees;
+}

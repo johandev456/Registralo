@@ -1,4 +1,4 @@
-import { assignUsersServices,unassignUsersServices } from "../services/assignees.service.js";
+import { assignUsersServices,getAssigneesServices,unassignUsersServices } from "../services/assignees.service.js";
 
 export const assignUsers= async (req,res)=>{
     
@@ -24,4 +24,15 @@ export const unassignUsers = async (req,res)=>{
         res.status(500).json({message:"Error al desasignar usuarios"})
     }
 
+}
+
+export const getAssignees= async (req,res)=>{
+    try{
+        const automationId=req.params.id;
+        const assignees=await getAssigneesServices(automationId);
+
+        res.status(200).json(assignees)
+    }catch(error){
+        res.status(500).json({message:"Error al desasignar usuarios"})
+    }
 }
